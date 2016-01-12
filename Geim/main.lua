@@ -1,6 +1,7 @@
 function love.load()
 	love.graphics.setBackgroundColor( 255, 255, 255 )
 	print("Hello, LOVE!")
+	clicked = false
 end
 
 function love.draw()
@@ -16,6 +17,7 @@ function love.draw()
 	love.graphics.rectangle( "fill", 0, 500, 800, 100 )
 	love.graphics.setColor(0,0,0)
 	love.graphics.print( "Hello, my love", 32, 532, 0, 1, 1 )
+	
 end
 
 function love.update(dt)
@@ -31,9 +33,12 @@ function love.keyreleased( key, unicode )
 end
 
 function love.mousepressed( x, y, button )
+	print("For now I am pressed ")
+	clicked = true
 end
 
 function love.mousereleased( x, y, button )
+	clicked = false
 end
 
 function love.quit()
