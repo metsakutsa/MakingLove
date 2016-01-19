@@ -1,5 +1,6 @@
 function love.load()
 	require("entities")
+	require("explosion")
 	ents.Startup()
 	love.graphics.setBackgroundColor( 255, 255, 255 )
 	xCloud = 0
@@ -7,9 +8,11 @@ function love.load()
 	imageGround = love.graphics.newImage( "textures/ground.png" )
 	imageEnemy_1 = love.graphics.newImage( "textures/enemy1.png" )
 	imageEnemy_2 = love.graphics.newImage( "textures/enemy2.png" )
-	local boxEnt = ents.Create( "box", 128, 128 )
-	local boxEnt2 = ents.Create( "box", 256, 128 )
-	boxEnt2:setSize( 64, 128 )
+	
+	for i = 1, 2 do
+		ents.Create( "zepp", -math.random(128,256), 128 )
+	end
+
 end
 
 function love.draw()
@@ -50,10 +53,23 @@ function love.keyreleased( key, unicode )
 end
 
 function love.mousepressed( x, y, button )
+
+	if button == 1 then
+		ents.shoot( x, y )
+	end
 end
 
 function love.mousereleased( x, y, button )
 end
 
 function love.quit()
+end
+
+function insideBox( px, py, x, y, wx, wy )
+	if px > x and px < x + wx then
+		if py > y and py < y + wy then
+			return true
+		end
+	end
+	return false
 end
