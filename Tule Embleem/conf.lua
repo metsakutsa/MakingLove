@@ -10,7 +10,7 @@ function love.conf(t)
     t.modules.sound = true      -- Enable the sound module (boolean)
 	t.modules.thread = true
     t.modules.physics = true    -- Enable the physics module (boolean)
-    t.console = true           -- Attach a console (boolean, Windows only)
+    t.console = false           -- Attach a console (boolean, Windows only)
     t.title = "Mina olen pealkiri"        -- The title of the window the game is in (string) 
     t.author = "Ryedough"        -- The author of the game (string)
     t.window.fullwindow = false -- Enable fullwindow (boolean)
