@@ -1,61 +1,68 @@
-suit = require "Libraries/SUIT"
-local show_message = false
-local slider = {value = 1, min = 0, max = 2}
-local input = {text = ""}
-
 function love.load()
-	love.graphics.setBackgroundColor( 0, 0, 0 )
+	love.graphics.setBackgroundColor( 255, 255, 255 )
+	loveframes = require("Libraries/LoveFrames")
 end
 
 function love.draw()
-	suit.draw()
+	local button = loveframes.Create("button")
+	button:SetPos(10, 10)
+
+	--FOR LOVEFRAMES, KEEP ON BOTTOM
+	--loveframes.draw()
 end
 
 function love.update( dt )
 	mouseX = love.mouse.getX( )
 	mouseY = love.mouse.getY( )
 
-	-- Put a button on the screen. If hit, show a message.
-    if suit.Button("Hello, World!", 100,100, 300,30).hit then
-        show_message = true
-    end
-
-    -- if the button was pressed at least one time, but a label below
-    if show_message then
-        suit.Label("How are you today?", 100,150, 300,30)
-    end
-
-    suit.Slider(slider, 100,500, 200,20)
-    suit.Label(tostring(slider.value), {align="left"}, 310,500, 200,20)
-
-    suit.Input(input, 500,100,200,30)
-    suit.Label("Hello, "..input.text, {align="left"}, 500,150,200,30)
-
+	--FOR LOVEFRAMES, KEEP ON BOTTOM
+	loveframes.update(dt)
 end
 
 function love.focus( bool )
 end
 
 function love.keypressed( key, unicode )
-	suit.keypressed(key)
+
+
+
+	--FOR LOVEFRAMES, KEEP ON BOTTOM
+	loveframes.keypressed(key, unicode)
 end
 
 function love.keyreleased( key, unicode )
+
+	--FOR LOVEFRAMES, KEEP ON BOTTOM
+	loveframes.keyreleased(key)
 end
 
 function love.mousepressed( x, y, button )
+
+	--FOR LOVEFRAMES, KEEP ON BOTTOM
+	loveframes.mousepressed(x, y, button)
 end
 
 function love.mousereleased( x, y, button )
+
+
+	--FOR LOVEFRAMES, KEEP ON BOTTOM
+	loveframes.mousereleased(x, y, button)
 end
 
 function love.quit()
 end
 
--- forward keyboard events
-function love.textinput(t)
-    suit.textinput(t)
+--FOR LOVEFRAMES
+function love.textinput(text)
+
+	-- your code
+
+	loveframes.textinput(text)
 end
+
+
+
+
 
 -- Collision detection function.
 -- Returns true if two boxes overlap, false if they don't
