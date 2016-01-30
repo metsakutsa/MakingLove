@@ -2,34 +2,51 @@ suit = require "Libraries/SUIT"
 local show_message = false
 local slider = {value = 1, min = 0, max = 2}
 local input = {text = ""}
+local showConf = false
+local conf = suit.new()
+local mainMenu = suit.new()
 
 function love.load()
 	love.graphics.setBackgroundColor( 0, 0, 0 )
 end
 
 function love.draw()
-	suit.draw()
+    --kuskil on mingi viga, ma ei saa aru, miks teisel korral mainmenust confi ei lähe
+    if showConf then
+        conf:draw()
+    else
+        mainMenu:draw()
+    end
 end
 
 function love.update( dt )
 	mouseX = love.mouse.getX( )
 	mouseY = love.mouse.getY( )
+    -- put the layout origin at position (100,100)
+    -- cells will grow down and to the right of the origin
+    -- note the colon syntax
+    mainMenu.layout:reset(200,100,10,10)
 
-	-- Put a button on the screen. If hit, show a message.
-    if suit.Button("Hello, World!", 100,100, 300,30).hit then
-        show_message = true
+    mainMenu.theme.color = {
+    normal  = {bg = { 0, 66, 66}, fg = {188,188,188}},
+    hovered = {bg = { 50,153,187}, fg = {255,255,255}},
+    active  = {bg = {255,153,  0}, fg = {225,225,225}}
+    }
+
+    mainMenu:Button("New game", mainMenu.layout:row(400,100))
+    mainMenu:Button("Load game", mainMenu.layout:row())  
+    if mainMenu:Button("Configuration", mainMenu.layout:row()).hit then
+        showConf = true
     end
 
-    -- if the button was pressed at least one time, but a label below
-    if show_message then
-        suit.Label("How are you today?", 100,150, 300,30)
+
+    conf.layout:reset(200,100,10,10)
+    conf:Button("Something", conf.layout:row(400,100))
+    if conf:Button("Back", conf.layout:row()).hit then
+        showConf = false
     end
 
-    suit.Slider(slider, 100,500, 200,20)
-    suit.Label(tostring(slider.value), {align="left"}, 310,500, 200,20)
 
-    suit.Input(input, 500,100,200,30)
-    suit.Label("Hello, "..input.text, {align="left"}, 500,150,200,30)
 
 end
 
