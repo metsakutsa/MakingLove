@@ -1,21 +1,25 @@
 suit = require "Libraries/SUIT"
-local show_message = false
-local slider = {value = 1, min = 0, max = 2}
-local input = {text = ""}
-local showConf = false
-local conf = suit.new()
+
+--Here we have the most important thing - game state. When you create a new menu, in-game window, etc, add it here. Use the same name for state and the suit itself
+
+local confMenu = suit.new()
 local mainMenu = suit.new()
+local gameStates = {["mainMenu"] = mainMenu, ["confMenu"]=confMenu}
+local currentGameState = "mainMenu"
 
 function love.load()
-	love.graphics.setBackgroundColor( 0, 0, 0 )
 end
 
 function love.draw()
-    --kuskil on mingi viga, ma ei saa aru, miks teisel korral mainmenust confi ei lähe
-    if showConf then
-        conf:draw()
-    else
-        mainMenu:draw()
+    --FSM
+    gameStates[currentGameState]:draw()
+
+    --BUTTON checker; Tests what buttons are pressed. This is bad and needs to be changed.
+    if mainMenuButton.hit then
+      currentGameState = "mainMenu"
+    end
+    if confButton.hit then
+      currentGameState = "confMenu"
     end
 end
 
@@ -33,20 +37,13 @@ function love.update( dt )
     active  = {bg = {255,153,  0}, fg = {225,225,225}}
     }
 
-    mainMenu:Button("New game", mainMenu.layout:row(400,100))
-    mainMenu:Button("Load game", mainMenu.layout:row())  
-    if mainMenu:Button("Configuration", mainMenu.layout:row()).hit then
-        showConf = true
-    end
+    newGameButton = mainMenu:Button("New game", mainMenu.layout:row(400,100))
+    loadGameButton = mainMenu:Button("Load game", mainMenu.layout:row())
+    confButton = mainMenu:Button("Configuration", mainMenu.layout:row())
 
-
-    conf.layout:reset(200,100,10,10)
-    conf:Button("Something", conf.layout:row(400,100))
-    if conf:Button("Back", conf.layout:row()).hit then
-        showConf = false
-    end
-
-
+    confMenu.layout:reset(200,100,10,10)
+    somethingButton = confMenu:Button("Something", confMenu.layout:row(400,100))
+    mainMenuButton = confMenu:Button("Main menu", confMenu.layout:row())
 
 end
 
