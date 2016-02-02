@@ -1,49 +1,35 @@
 suit = require "Libraries/SUIT"
+require "menu"
 
---Here we have the most important thing - game state. When you create a new menu, in-game window, etc, add it here. Use the same name for state and the suit itself
-
-local confMenu = suit.new()
-local mainMenu = suit.new()
-local gameStates = {["mainMenu"] = mainMenu, ["confMenu"]=confMenu}
-local currentGameState = "mainMenu"
+gameStates = {["main menu"] = mainMenu, ["configuration menu"]=confMenu, 
+["quit game"] = quitGame, ["new game"] = newGame, ["load game menu"]= loadGame}
+currentGameState = "main menu"
 
 function love.load()
 end
 
 function love.draw()
-    --FSM
-    gameStates[currentGameState]:draw()
+  --Draw the current game state SUIT instance
+  gameStates[currentGameState]:draw()
 
-    --BUTTON checker; Tests what buttons are pressed. This is bad and needs to be changed.
-    if mainMenuButton.hit then
-      currentGameState = "mainMenu"
-    end
-    if confButton.hit then
-      currentGameState = "confMenu"
-    end
+  if currentGameState == "main menu" then 
+    drawMainMenu()
+  end
+
+  if currentGameState == "configuration menu" then
+    drawConfMenu()
+  end
+  suit.draw()
+
 end
 
 function love.update( dt )
 	mouseX = love.mouse.getX( )
 	mouseY = love.mouse.getY( )
-    -- put the layout origin at position (100,100)
-    -- cells will grow down and to the right of the origin
-    -- note the colon syntax
-    mainMenu.layout:reset(200,100,10,10)
 
-    mainMenu.theme.color = {
-    normal  = {bg = { 0, 66, 66}, fg = {188,188,188}},
-    hovered = {bg = { 50,153,187}, fg = {255,255,255}},
-    active  = {bg = {255,153,  0}, fg = {225,225,225}}
-    }
-
-    newGameButton = mainMenu:Button("New game", mainMenu.layout:row(400,100))
-    loadGameButton = mainMenu:Button("Load game", mainMenu.layout:row())
-    confButton = mainMenu:Button("Configuration", mainMenu.layout:row())
-
-    confMenu.layout:reset(200,100,10,10)
-    somethingButton = confMenu:Button("Something", confMenu.layout:row(400,100))
-    mainMenuButton = confMenu:Button("Main menu", confMenu.layout:row())
+  if currentGameState == "quit game" then
+    love.event.push("quit")
+  end
 
 end
 
@@ -52,12 +38,23 @@ end
 
 function love.keypressed( key, unicode )
 	suit.keypressed(key)
+  if key == "1" then
+    currentGameState = "main menu"
+  end
+  if key == "2" then
+    currentGameState = "configuration menu"
+  end
+  if key == "escape" then
+    currentGameState = "quit game"
+  end
 end
 
 function love.keyreleased( key, unicode )
 end
 
 function love.mousepressed( x, y, button )
+  print(currentGameState)
+  buttonHit()
 end
 
 function love.mousereleased( x, y, button )
