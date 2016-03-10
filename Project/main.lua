@@ -1,27 +1,22 @@
 suit = require "Libraries/SUIT"
 require "menu"
+require "button"
+require "states"
+require "tile"
 
-
-buttons = {}
-gameStates = {["Main menu"] = drawMainMenu, ["New game"] = drawNewGameMenu, ["Load game"] = drawLoadGameMenu, 
-["Configuration"] = drawConfigMenu, ["Quit"] = love.event.quit, ["Audio"] = drawAudioMenu, ["Video"] = drawVideoMenu}
 
 function love.load()
-	currentState = "Main menu"
+
 end
 
 function love.draw()
+    dirt.draw(100,100)
 	suit.draw()
 end
 
 function love.update( dt )
-	buttonHit()
-
-	if gameStates[currentState] then
-		gameStates[currentState]()
-	else
-		error("Invalid gamestate", 0)
-	end
+	suit.layout:reset(100,100,10,10)
+    
 end
 
 function love.focus( bool )
@@ -33,21 +28,11 @@ end
 function love.keyreleased( key, unicode )
 end
 
-function love.quit()
+function  love.mousepressed( x, y, button, istouch )
 end
+
 
 -- forward keyboard events
 function love.textinput(t)
     suit.textinput(t)
-end
-
-function buttonHit()
-	for i, v in ipairs (buttons) do
-		if v.hit then
-			if v.id then
-				currentState = v.id
-				v.hit = false
-			end
-		end
-	end
 end

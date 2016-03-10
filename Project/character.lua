@@ -1,11 +1,12 @@
---THIS IS HOW YOU BE CLASSY
-
 Character = {}
 
+
 --ÜLDINE KARAKTERI KLASS
-function Character.new(name)
+function Character.new(name, atk, hp)
 	local self = {}
 	local name = name
+	local atk = atk
+	local hp = hp
 
 	function self.getName()
 		if name then
@@ -19,8 +20,16 @@ function Character.new(name)
 		print("Karakter ütleb " .. words)
 	end
 
+
+
 	return self
 end
+
+
+
+
+
+
 
 
 --KALA KLASS
