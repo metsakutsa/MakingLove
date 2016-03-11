@@ -1,7 +1,7 @@
 Tile = {}
 
-local tileWidth = 32
-local tileHeight = 32
+tileWidth = 32
+tileHeight = 32
 
 function Tile.new(terrain, walkable, interactive)
 	local self = {}
