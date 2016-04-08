@@ -4,7 +4,7 @@ require "combat"
 require "conf"
 
 function love.load()
-	mainMenu = MainMenu.new()
+	
 end
 
 function love.draw()

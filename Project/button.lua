@@ -1,26 +1,32 @@
 --CLASS OF BUTTONS
-
 Button = {}
-
-function Button.new(label, state, width, height)
+function Button.new(name, state)
 	local self = {}
-	local label = label
-	local state = state
-	local width = width
-	local height = height
-
-	function self.changeState()
-		if self.hit then
-			currentState = state
+	local name = name
+	local id = id
+	local func = func
+	
+	function self.getName()
+		if name then
+			return name
 		else
-		    return
+			return "No name"
 		end
 	end
-
-	function self.draw()
-		suit.Button(label, suit.layout:row(width, height))
+	
+	function self.getState()
+		if state then
+			return state
+		else
+			return "No state"
+		end
 	end
-
+	
+	function self.draw()
+		if suit.Button(name, suit.layout:row(400,100)).hit then
+			print(self.getState())
+		end
+	end
+	
 	return self
 end
-

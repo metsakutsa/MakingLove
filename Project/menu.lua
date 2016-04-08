@@ -1,126 +1,31 @@
 suit = require "Libraries/SUIT"
+require "button"
 
 --MENU CLASS
+--Creates a new graphical user interface menu with a maximum of 4 buttons.
+--Create a new menu variable, call Menu.new and insert desired button labels as button1...button4 and their IDs by id1...id4
 Menu = {}
-function Menu.new(name)
+function Menu.new(button1, id1, button2, id2, button3, id3, button4, id4)
 	local self = {}
-	local name = name
-	
-	function self.getName()
-		if name then
-			return name
-		else
-			return "No name"
-		end
-	end
-	
-	function self.drawMenu()
-	end
-	
-	return self
-end
-
-
-
---BUTTON CLASS
-Button = {}
-function Button.new(name, state)
-	local self = {}
-	local name = name
-	local id = id
-	local func = func
-	
-	function self.getName()
-		if name then
-			return name
-		else
-			return "No name"
-		end
-	end
-	
-	function self.getState()
-		if state then
-			return state
-		else
-			return "No state"
-		end
-	end
-	
 	function self.draw()
-		if suit.Button(name, suit.layout:row(400,100)).hit then
-			print(self.getState())
+		if button1 and id1 then
+		Button.new(button1, id1).draw()
+			if button2 and  id2 then
+			Button.new(button2, id2).draw()
+				if button3 and id3 then
+				Button.new(button3, id3).draw()
+					if button4 and id4 then
+						Button.new(button4, id4).draw()
+					end				
+				end
+			end
 		end
 	end
-	
 	return self
 end
 
-
-
-MainMenu = {}
-function MainMenu.new()
-	local self = Menu.new("Main menu")
-	
-	function self.draw()
-		Button.new("New game", "new game menu").draw()
-		Button.new("Load game", "load game menu").draw()
-		Button.new("Configuration", "configuration menu").draw()
-		Button.new("Quit", "quit").draw()
-	end
-	return self
-end
-
-
-
-function drawMainMenu()
-	suit.layout:reset(200,100,10,10)
-
-	newGameButton = suit.Button("New game", suit.layout:row(400,100))
-	loadGameButton = suit.Button("Load game", suit.layout:row())
-	configButton = suit.Button("Configuration", suit.layout:row())
-	quitButton = suit.Button("Quit", suit.layout:row())
-
-	table.insert(buttons, newGameButton)
-	table.insert(buttons, loadGameButton)
-	table.insert(buttons, configButton)
-	table.insert(buttons, quitButton)
-end
-
-function drawNewGameMenu()
-	suit.layout:reset(200,100,10,10)
-	newGameSlot1 = suit.Button("Slot 1", suit.layout:row(400,100))
-	newGameSlot2 = suit.Button("Slot 2", suit.layout:row())
-	newGameSlot3 = suit.Button("Slot 3", suit.layout:row())
-	mainMenuButton = suit.Button("Main menu", suit.layout:row())
-
-	table.insert(buttons, newGameSlot1)
-	table.insert(buttons, newGameSlot2)
-	table.insert(buttons, newGameSlot3)
-	table.insert(buttons, mainMenuButton)
-end
-
-function drawLoadGameMenu()
-	suit.layout:reset(200,100,10,10)
-	loadGameSlot1 = suit.Button("Slot 1", suit.layout:row(400,100))
-	loadGameSlot2 = suit.Button("Slot 2", suit.layout:row())
-	loadGameSlot3 = suit.Button("Slot 3", suit.layout:row())
-	mainMenuButton = suit.Button("Main menu", suit.layout:row())
-
-	table.insert(buttons, loadGameSlot1)
-	table.insert(buttons, loadGameSlot2)
-	table.insert(buttons, loadGameSlot3)
-	table.insert(buttons, mainMenuButton)
-end
-
-function drawConfigMenu()
-	suit.layout:reset(200,100,10,10)
-
-	videoConfigButton = suit.Button("Video", suit.layout:row(400,100))
-	audioConfigButton = suit.Button("Audio", suit.layout:row())
-	mainMenuButton = suit.Button("Main menu", suit.layout:row())
-
-	table.insert(buttons, videoConfigButton)
-	table.insert(buttons, audioConfigButton)
-	table.insert(buttons, mainMenuButton)
-end
-
+--Main menu stuff
+mainMenu = Menu.new("New game", "new game menu", "Load game", "load game menu", "Configuration", "configuration menu", "Quit", "quit")
+newGameMenu = Menu.new("Slot 1", "new game slot 1", "Slot 2", "new game slot 2", "Back", "back")
+loadGameMenu = Menu.new("Load", "load game", "Back", "back")
+configurationMenu = Menu.new("Setting", "setting", "Back", "back")
