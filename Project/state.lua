@@ -9,7 +9,7 @@ function State.new(newState)
 		return self.currentState
 	end
 	
-	function self.newState()
+	function self.setState()
 		prevState = self.getCurrentState()
 		currentState = newState
 	end

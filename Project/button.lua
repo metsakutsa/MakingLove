@@ -1,10 +1,13 @@
+require "state"
+
+
 --CLASS OF BUTTONS
+--Creates a new button with the size specified by width and height variables
 Button = {}
 function Button.new(name, state)
 	local self = {}
-	local name = name
-	local id = id
-	local func = func
+	local width = 400
+	local height = 100
 	
 	function self.getName()
 		if name then
@@ -23,8 +26,8 @@ function Button.new(name, state)
 	end
 	
 	function self.draw()
-		if suit.Button(name, suit.layout:row(400,100)).hit then
-			print(self.getState())
+		if suit.Button(name, suit.layout:row(width,height)).hit then
+			StateMachine.setState(state)
 		end
 	end
 	
