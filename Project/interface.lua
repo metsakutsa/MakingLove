@@ -1,12 +1,47 @@
 suit = require "Libraries/SUIT"
 require "button"
 
+--INTERFACE CLASS
+--Creates a graphical user interface
+Interface = {}
+function Interface.new(x,y,width,height,fill)
+	local self ={}
+	local x = x
+	local y = y
+	local width = width
+	local height = height
+	
+	function self.draw()
+		love.graphics.setColor(fill)
+		love.graphics.rectangle("fill", x, y, width, height)
+	end
+	
+	function self.getX()
+		return x
+	end
+	
+	function self.getY()
+		return y
+	end
+	
+	function self.getWidth()
+		return width()
+	end
+	
+	function self.getHeight()
+		return height
+	end
+	
+	return self
+end
+
+
 --MENU CLASS
---Creates a new graphical user interface menu with a maximum of 4 buttons.
+--Creates a new graphical menu with a maximum of 4 buttons and buttons only, no background; the background is to be set with the interface class.
 --Create a new menu variable, call Menu.new and insert desired button labels as button1...button4 and their IDs by id1...id4
 Menu = {}
-function Menu.new(button1, id1, button2, id2, button3, id3, button4, id4)
-	local self = {}
+function Menu.new( x, y, width, height, button1, id1, button2, id2, button3, id3, button4, id4)
+	local self = Interface.new()
 	function self.draw()
 		if button1 and id1 then
 		Button.new(button1, id1).draw()

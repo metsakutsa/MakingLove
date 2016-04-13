@@ -1,5 +1,5 @@
 suit = require "Libraries/SUIT"
-require "menu"
+require "interface"
 require "button"
 require "states"
 require "tile"
