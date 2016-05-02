@@ -1,6 +1,6 @@
 --States class
 State = {}
-function State.new(newState)
+function State.new(prevState, newState)
 	local self = {}
 	local currentState
 	local prevState
@@ -17,4 +17,4 @@ function State.new(newState)
 	return self
 end
 
-StateMachine = State.new("main menu")
+StateMachine = State.new("start", "main menu")

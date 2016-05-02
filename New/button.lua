@@ -1,6 +1,3 @@
-require "state"
-
-
 --CLASS OF BUTTONS
 --Creates a new button with the size specified by width and height variables
 Button = {}
@@ -10,6 +7,8 @@ function Button.new(name, id, x, y, width, height)
 	local y = y
 	local width = width
 	local height = height
+	local id = id
+	local name = name
 	
 	function self.getName()
 		return name
@@ -38,7 +37,8 @@ function Button.new(name, id, x, y, width, height)
 	function self.draw()
 		suit.layout:reset( x, y, 10, 10 )
 		if suit.Button(name, suit.layout:row(width,height)).hit then
-			StateMachine.setID(id)
+			id .. State.draw()
+			--State[id].draw()
 		end
 	end
 	
