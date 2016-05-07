@@ -8,13 +8,13 @@ function love.load()
 end
 
 function love.draw()
-	yellowState.draw()
+	yellowState.init()
 	suit.draw()
 end
 
 function love.update( dt )
 	--suit.layout:reset( 200,75,10,10 )
-	print(State[1].getName())
+	--print(State[1].getName())
 end
 
 function love.focus( bool )

@@ -38,6 +38,7 @@ function yellowState.draw()
 	Button.new("BLUE", "blue", 300, 250, 200, 100).draw()
 	Button.new("YELLOW", "yellow", 550, 250, 200, 100).draw()
 end
+yellowState.init() = yellowState.draw()
 
 --RED STATE
 redState = State.new("red")

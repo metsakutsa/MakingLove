@@ -37,7 +37,7 @@ function Button.new(name, id, x, y, width, height)
 	function self.draw()
 		suit.layout:reset( x, y, 10, 10 )
 		if suit.Button(name, suit.layout:row(width,height)).hit then
-			id .. State.draw()
+			--State.set(id)
 			--State[id].draw()
 		end
 	end
