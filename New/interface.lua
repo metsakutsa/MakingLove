@@ -1,4 +1,5 @@
 suit = require "Libraries/SUIT"
+require "button"
 
 --INTERFACE CLASS
 --Creates a graphical user interface
