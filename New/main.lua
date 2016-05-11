@@ -1,38 +1,22 @@
-suit = require "Libraries/SUIT"
+local suit = require "Libraries/SUIT"
 require "conf"
-require "interface"
-local machine = require('statemachine')
+require "states"
+require "mainMenu"
 
-local fsm = machine.create({
-	initial = 'green',
-	events = {
-	{ name = 'red',  from = 'green',  to = 'red' },
-	{ name = 'green', from = 'red', to = 'green'    }
-	},
-	callbacks = {
-	ongreen =  function(self, event, from, to) bgColor = {0,255,0} end,
-	onred =    function(self, event, from, to) bgColor = {255,0,0} end,
-}})
-
+--Any initially loaded things go here
 function love.load()
-	print("Entering " .. fsm.current .. " state")
-	bgColor = {0,255,0}
+	drawState = init
 end
 
+--This is called after the update function, basically used only to draw the SUIT library, do not call SUIT functions here
 function love.draw()
 	suit.draw()
-	love.graphics.setBackgroundColor(bgColor)
 end
 
+--Update SUIT functions here as well as all other updates
 function love.update( dt )
-	suit.layout:reset(0,0,120,10)
-	if suit.Button("RED", suit.layout:col(200,100)).hit then
-		fsm:red()
-	end
 	
-	if suit.Button("GREEN", suit.layout:col(200,100)).hit then
-		fsm:green()
-	end
+	drawState()
 	
 	--PRINTS STATE CHANGE INFORMATION IN THE CONSOLE
 	fsm.onstatechange = function(self, event, from, to) print("Entering " .. fsm.current .. " state") end
@@ -53,4 +37,13 @@ end
 -- forward keyboard events
 function love.textinput(t)
     suit.textinput(t)
+end
+
+function init()
+	suit.layout:reset(300,250,0,0)
+	suit.Label("Press any button to start", suit.layout:row(200,100))
+	if love.keypressed(any) then
+		fsm:MainMenu()
+	end
+	
 end
