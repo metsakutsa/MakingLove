@@ -32,7 +32,7 @@ function drawNewGame()
 	suit.layout:reset(300,75,10,10)
 	
 	if suit.Button("Slot 1", suit.layout:row(200,100)).hit then
-		
+		fsm:Tutorial()
 	end
 	
 	if suit.Button("Slot 2", suit.layout:row(200,100)).hit then
