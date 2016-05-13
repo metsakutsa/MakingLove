@@ -16,6 +16,7 @@ fsm = machine.create({
 	
 	--TUTORIAL SCENE STATES
 	{ name = "Tutorial", from = "NewGame", to = "Tutorial" },
+	{ name = "Test", from = "NewGame", to = "Tutorial" },
 	
 
 	

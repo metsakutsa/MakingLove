@@ -7,6 +7,10 @@ require "Scenes/tutorial"
 --Any initially loaded things go here
 function love.load()
 	drawState = init
+	
+	--Make text font nice
+	font = love.graphics.newFont(12)
+	love.graphics.setFont(font)
 end
 
 function love.draw()

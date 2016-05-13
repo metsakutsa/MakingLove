@@ -36,11 +36,11 @@ function drawNewGame()
 	end
 	
 	if suit.Button("Slot 2", suit.layout:row(200,100)).hit then
-		
+		fsm:Test()
 	end
 	
 	if suit.Button("Slot 3", suit.layout:row(200,100)).hit then
-		
+		fsm:Tutorial()
 	end
 	
 	if suit.Button("Back", suit.layout:row(200,100)).hit then
