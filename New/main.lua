@@ -3,6 +3,7 @@ require "conf"
 require "states"
 require "mainMenu"
 require "Scenes/tutorial"
+require "file reader"
 
 --Any initially loaded things go here
 function love.load()
@@ -21,6 +22,7 @@ end
 function love.update( dt )	
 	--PRINTS STATE CHANGE INFORMATION IN THE CONSOLE
 	fsm.onstatechange = function(self, event, from, to) print("Entering " .. fsm.current .. " state") end
+	
 end
 
 function love.focus( bool )
@@ -48,3 +50,4 @@ function init()
 	suit.layout:reset(300,250,0,0)
 	suit.Label("Press any button to start", suit.layout:row(200,100))
 end
+
