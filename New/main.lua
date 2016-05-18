@@ -2,15 +2,19 @@ local suit = require "Libraries/SUIT"
 require "conf"
 require "states"
 require "mainMenu"
-require "Scenes/tutorial"
+require "Scenes/Tutorial/tutorial"
 
 --Any initially loaded things go here
 function love.load()
 	drawState = init
 	
 	--Make text font nice
-	font = love.graphics.newFont(12)
+	font = love.graphics.newFont(14)
 	love.graphics.setFont(font)
+	
+	--Get window size
+	winWidth, winHeight = love.graphics.getDimensions()
+	
 end
 
 function love.draw()
@@ -46,7 +50,7 @@ function love.textinput(t)
 end
 
 function init()
-	suit.layout:reset(300,250,0,0)
+	suit.layout:reset((winWidth-200)/2,(winHeight-100)/2,0,0)
 	suit.Label("Press any button to start", suit.layout:row(200,100))
 end
 

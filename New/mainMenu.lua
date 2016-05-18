@@ -7,7 +7,7 @@ function drawMainMenu()
 	love.graphics.setBackgroundColor({ 255,255,255 })
 	
 	--This needs to be in every menu drawing function
-	suit.layout:reset(300,75,10,10)
+	suit.layout:reset((winWidth-200)/2,(winHeight-100*4-30)/2,10,10)
 	
 	--Create the desired buttons
 	if suit.Button("New game", suit.layout:row(200,100)).hit then
@@ -29,7 +29,7 @@ function drawMainMenu()
 end
 
 function drawNewGame()
-	suit.layout:reset(300,75,10,10)
+	suit.layout:reset((winWidth-200)/2,(winHeight-100*4-30)/2,10,10)
 	
 	if suit.Button("Slot 1", suit.layout:row(200,100)).hit then
 		fsm:Tutorial()
@@ -50,7 +50,7 @@ function drawNewGame()
 end
 
 function drawLoadGame()
-	suit.layout:reset(300,75,10,10)
+	suit.layout:reset((winWidth-200)/2,(winHeight-100*4-30)/2,10,10)
 	
 	if suit.Button("Slot 1", suit.layout:row(200,100)).hit then
 		
@@ -71,7 +71,7 @@ function drawLoadGame()
 end
 
 function drawConfiguration()
-	suit.layout:reset(300,75,10,10)
+	suit.layout:reset((winWidth-200)/2,(winHeight-100*4-30)/2,10,10)
 	
 	if suit.Button("Video", suit.layout:row(200,100)).hit then
 		
