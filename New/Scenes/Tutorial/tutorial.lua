@@ -19,8 +19,8 @@ function drawTutorial()
 	love.graphics.rectangle("fill", border, winHeight - winHeight/4 + border, winWidth - border*2, winHeight/4 - border*2)
 	
 	--Make text
-	suit.layout:reset( border + 10, winHeight - winHeight/4 + border, 0, 0 )
-	suit.Label(tLines[currentLine], suit.layout:row(winWidth-border*2 - 20, winHeight/4 - 60))
+	tutorialSuit.layout:reset( border + 10, winHeight - winHeight/4 + border, 0, 0 )
+	tutorialSuit:Label(tLines[currentLine], tutorialSuit.layout:row(winWidth-border*2 - 20, winHeight/4 - 60))
 	
 	--Make next and prev and skip button
 	tutorialSuit.layout:reset( winWidth - 300, winHeight - border - 50, 10, 0 )
