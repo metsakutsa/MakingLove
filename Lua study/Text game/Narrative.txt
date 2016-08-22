@@ -1,0 +1,6 @@
+Hello
+You have an option.
+You can choose between option 1 and option 2.
+Make your choice now!
+You chose option 1
+You chose option 2

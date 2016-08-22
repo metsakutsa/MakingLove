@@ -3,6 +3,7 @@ require "conf"
 require "states"
 require "mainMenu"
 require "Scenes/Tutorial/tutorial"
+require "fileReader"
 
 --Any initially loaded things go here
 function love.load()
