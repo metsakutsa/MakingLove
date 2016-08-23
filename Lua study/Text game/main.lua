@@ -16,19 +16,26 @@ function love.load()
 	--Lez spawn some buttons
 	buttonSpawn( button, 400, 600, "Previous", "previous" )
 	buttonSpawn( button, 680, 600, "Next", "next" )
+	buttonSpawn( button, 1000, 600, "Exit", "quit" )
 	
 end
 
 function love.draw()
 	--Write the text
 	love.graphics.setColor(255,255,255)
-	love.graphics.printf(narrative[currentLine], 100, 100, 1080, "center")
 	
-	--Draw the buttons
+	if string.find(narrative[currentLine], "#") then
+		_G[string.sub(narrative[currentLine],2)]()
+	else
+		love.graphics.printf(narrative[currentLine], 100, 100, 1080, "center")
+	end
+	
 	buttonDraw(button)
+	--Draw the buttons
 end
 
 function love.update()
+
 end
 
 function love.mousepressed(x,y)
@@ -40,8 +47,8 @@ function love.mousepressed(x,y)
 	end
 	
 	if buttonClick(button,x,y) == "quit" then fsm:quit() end
-	if buttonClick(button,x,y) == "agree" then fsm:positive() end
-	if buttonClick(button,x,y) == "back" then fsm:question() end
+	if buttonClick(button,x,y) == "option1" then fsm:option1() end
+	if buttonClick(button,x,y) == "option2" then fsm:option2() end
 	
 	print (buttonClick(button,x,y))
 end

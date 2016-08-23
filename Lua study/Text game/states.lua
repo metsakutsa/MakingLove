@@ -189,8 +189,8 @@ local machine = require('statemachine')
 local fsm = machine.create({
   inital = 'green',
   events = {
-    { name = 'panic',   from = 'green', to = 'red'   },
     { name = 'calm',    from = 'red',   to = 'green' },
+    { name = 'panic',   from = 'green', to = 'red'   },
 }})
 print(fsm.current) -- "green"
 --]]
@@ -199,13 +199,14 @@ print(fsm.current) -- "green"
 local machine = require('Libraries/Statemachine/statemachine')
 
 fsm = machine.create({
-	initial = "question",
+	initial = "none",
 	events = {
 	
 	--MAIN MENU STATES
-	{ name = "question", from = "none", to = {"option1","option2"} },
-	{ name = "enter", from = "question", to = "option1" },
-	{ name = "quit", from = "question", to = "option2" },
+	{ name = "question", from = "none", to = "question" },
+	{ name = "option1", from = "question", to = "option1" },
+	{ name = "option2", from = "question", to = "option2" },
+	{ name = "quit", from = "*", to = "quit" },
 	
 	{ name = "", from = "", to = "" }
 	},
