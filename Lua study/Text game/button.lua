@@ -4,13 +4,13 @@
 button = {}
 
 --This function spawns buttons into the table above
-function buttonSpawn( x, y, label, id)
-	table.insert( button, { x = x, y = y, label = label, id = id} )
+function buttonSpawn( buttonTable, x, y, label, id)
+	table.insert( buttonTable, { x = x, y = y, label = label, id = id} ) 
 end
 
 --This function draws the buttons from the table above
-function buttonDraw()
-	for i,v in ipairs(button) do
+function buttonDraw(buttonTable)
+	for i,v in ipairs(buttonTable) do
 		love.graphics.setColor(255,255,255)
 		love.graphics.rectangle("fill", v.x, v.y, 200, 100)
 		love.graphics.setColor(0,0,0)
@@ -19,8 +19,8 @@ function buttonDraw()
 end
 
 --This function checks if buttons are clicked
-function buttonClick(x,y)
-	for i,v in ipairs(button) do
+function buttonClick(buttonTable,x,y)
+	for i,v in ipairs(buttonTable) do
 		if x > v.x and
 			x < v.x + 200 and
 			y > v.y and

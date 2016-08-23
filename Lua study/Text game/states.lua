@@ -199,13 +199,13 @@ print(fsm.current) -- "green"
 local machine = require('Libraries/Statemachine/statemachine')
 
 fsm = machine.create({
-	--initial = "",
+	initial = "question",
 	events = {
 	
 	--MAIN MENU STATES
-	{ name = "MainMenu", from = {"NewGame", "LoadGame", "Configuration", "none", "Tutorial"}, to = "MainMenu" },
-	{ name = "NewGame", from = "MainMenu", to = "NewGame" },
-	{ name = "Quit", from = "MainMenu", to = "Quit" },
+	{ name = "question", from = "none", to = {"option1","option2"} },
+	{ name = "enter", from = "question", to = "option1" },
+	{ name = "quit", from = "question", to = "option2" },
 	
 	{ name = "", from = "", to = "" }
 	},
