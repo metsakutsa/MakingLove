@@ -1,8 +1,8 @@
 require "button"
 
 --Lez spawn some buttons
-buttonSpawn( 400, 600, "Option 1", "option1" )
-buttonSpawn( 680, 600, "Option 2", "option2" )
+buttonSpawn( 400, 600, "Previous", "previous" )
+buttonSpawn( 680, 600, "Next", "next" )
 buttonSpawn( 1000, 600, "Exit", "quit" )
 
 function question()
