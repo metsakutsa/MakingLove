@@ -203,11 +203,18 @@ fsm = machine.create({
 	events = {
 	
 	--MAIN MENU STATES
-	{ name = "question", from = "none", to = "question" },
-	{ name = "option1", from = "question", to = "option1" },
-	{ name = "option2", from = "question", to = "option2" },
-	{ name = "quit", from = "*", to = "quit" },
+	{ name = "startGame",	from = "none",		to = "level_1" },
+	{ name = "dialogue", 	from = "*", 		to = "" },
+	{ name = "quit", 		from = "*", 		to = "quit" },
 	
-	{ name = "", from = "", to = "" }
+	{ name = "", 			from = "", 			to = "" }
 	},
+	
+	callbacks = {
+    onpanic =  function(self, event, from, to, msg) print('panic! ' .. msg)    end,
+    onclear =  function(self, event, from, to, msg) print('thanks to ' .. msg) end,
+    ongreen =  function(self, event, from, to)      print('green light')       end,
+    onyellow = function(self, event, from, to)      print('yellow light')      end,
+    onred =    function(self, event, from, to)      print('red light')         end,
+  }
 })
